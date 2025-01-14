@@ -8,6 +8,7 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\KnowledgeBaseController;
 use App\Http\Controllers\OAuthConfigurationController;
 use App\Http\Controllers\QuoteRequestController;
+use App\Http\Controllers\NotificationController;
 
 // ... existing routes
 
@@ -16,6 +17,7 @@ Route::post('/tickets', [TicketController::class, 'store'])->name('tickets.store
 Route::get('/knowledge-base', [KnowledgeBaseController::class, 'index'])->name('knowledge-base.index');
 Route::get('/knowledge-base/{article}', [KnowledgeBaseController::class, 'show'])->name('knowledge-base.show');
 Route::post('/quote-requests', [QuoteRequestController::class, 'store'])->name('quote-requests.store');
+Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
 
 
 Route::middleware(['auth'])->group(function () {

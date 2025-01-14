@@ -10,13 +10,20 @@ class MailChimpService
 
     public function __construct()
     {
+        $apiKey = config('services.mailchimp.api_key');
+        $serverPrefix = config('services.mailchimp.server_prefix');
+    
+        if (!is_string($apiKey) || !is_string($serverPrefix)) {
+            throw new \Exception("Invalid Mailchimp API configuration.");
+        }
+    
         $this->client = new ApiClient();
         $this->client->setConfig([
-            'apiKey' => config('services.mailchimp.api_key'),
-            'server' => config('services.mailchimp.server_prefix')
+            'apiKey' => $apiKey,
+            'server' => $serverPrefix
         ]);
     }
-
+    
     public function setClient(ApiClient $client)
     {
         $this->client = $client;
